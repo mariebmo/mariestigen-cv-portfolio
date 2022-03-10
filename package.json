@@ -1,0 +1,34 @@
+{
+  "name": "personal-cv-website",
+  "version": "1.0.0",
+  "description": "personal cv project for Marie Stigen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariestigen/mariestigen-cv-portfolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariestigen/mariestigen-cv-portfolio/issues"
+  },
+  "homepage": "https://github.com/mariestigen/mariestigen-cv-portfolio#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-jest": "^27.5.1",
+    "concurrently": "^7.0.0",
+    "eslint": "^8.10.0",
+    "eslint-plugin-react": "^7.29.3",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2"
+  }
+}
