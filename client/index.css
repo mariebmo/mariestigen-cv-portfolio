@@ -1,0 +1,45 @@
+body{
+    margin: 25px;
+    font-family: Arial;
+    background-color: hsl(174, 10%, 80%);
+}
+
+.card {
+    background-color: hsl(0, 0%, 94%);
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 9px 3px rgba(0,0,0,0.08);
+    box-shadow: 3px 3px 9px 3px rgba(0,0,0,0.08);
+    width: 500px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.topbar {
+    background-color: hsl(198, 11%, 37%);
+    width: 100%;
+    margin: -25px;
+    margin-bottom: 25px;
+    padding: 25px;
+}
+
+.topbar h1 {
+    color: white;
+}
+
+.links {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    top: 15px;
+}
+
+.link {
+    position: center;
+    margin-right: 50px;
+    color: white;
+    padding: 10px 10px 10px 50px;
+    background-color: hsl(199, 20%, 28%);
+    width: 50px;
+    top: 50px;
+    text-decoration: none;
+}

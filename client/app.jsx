@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { CvCard, Links, TopBar } from "./modules";
+import { fetchJSON } from "./http";
+import {current} from "./dist/index.d498c491";
 
 export function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/work" element={<WorkPage />} />
-        <Route path="/education" element={<EducationPage />} />
+        <Route path="/cv" element={<CvPage />} />
+        <Route path="/misc" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
-  );
-}
-
-export function Links() {
-  return (
-    <div>
-      <Link to="/">Main</Link>
-      <Link to="/work">work</Link>
-      <Link to="/education">Education</Link>
-    </div>
   );
 }
 
@@ -32,69 +25,83 @@ export function MainPage() {
   );
 }
 
-async function fetchJSON(url){
+function handleCv(url) {
 
-    const res = await fetch(url)
+  const [currentCv, setCurrentCv] = useState([]);
 
-    if(!res.ok){
-        throw new Error(`Failed ${res.status}`)
+
+  useEffect(async () => {
+    try {
+      await fetchJSON(url).then((json) =>
+          setCurrentCv(json.experience)
+      );
+    } catch (err) {
+      console.log(err);
     }
+  }, [url]);
 
-    return await res.json()
+  return currentCv
+}
+
+export function CvPage() {
+  const [url, setUrl] = useState("/api/cv")
+  const cv = handleCv(url)
+  return(
+      <div>
+        <TopBar title="CV"/>
+        <button onClick={() => setUrl("/api/cv")}>all</button>
+        <button onClick={() => setUrl("/api/cv/work")}>work</button>
+        <button onClick={() => setUrl("/api/cv/education")}>edu</button>
+        {cv.map((e) => (
+            <CvCard key={e.id} {...e} />
+        ))}
+      </div>
+  )
 }
 
 export function WorkPage() {
   const [workCv, setWorkCv] = useState([]);
 
   useEffect(async () => {
-      try {
-          await fetchJSON("/api/cv/work")
-              .then((json) => setWorkCv(json.WorkExperience));
-      } catch (err) {
-          console.log(err);
-      }
-    }, {})
-
+    try {
+      await fetchJSON("/api/cv/work").then((json) =>
+        setWorkCv(json.WorkExperience)
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return (
     <div>
-      <Links />
-      <h1>WORK PAGE!</h1>
-        {workCv.map(e => <CvCard {...e} />)}
+        <TopBar title="Work"/>
+        {workCv.map((e) => (
+        <CvCard key={e.id} {...e} />
+      ))}
     </div>
   );
 }
 
 export function EducationPage() {
-    const [educationCv, setEducationCv] = useState([]);
+  const [educationCv, setEducationCv] = useState([]);
 
-    useEffect(async () => {
-        try {
-            await fetchJSON("/api/cv/education")
-                .then((json) => setEducationCv(json.EducationalExperience));
-        } catch (err) {
-            console.log(err);
-        }
-    }, {})
+  useEffect(async () => {
+    try {
+      await fetchJSON("/api/cv/education").then((json) =>
+        setEducationCv(json.EducationalExperience)
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return (
     <div>
-      <Links />
-      <h1>EDUCATION PAGE!</h1>
-      {educationCv.map(e => <CvCard {...e} />)}
+      <TopBar title="Education"/>
+      {educationCv.map((e) => (
+        <CvCard key={e.id} {...e} />
+      ))}
     </div>
   );
 }
 
-export function CvCard(cvObject) {
-  const { id, type, title, from, to } = cvObject;
-
-  return (
-    <div key={id}>
-      <h2>{title}</h2>
-      <p>{type}</p>
-      <p>from: {from}</p>
-      <p>to: {to}</p>
-    </div>
-  );
-}

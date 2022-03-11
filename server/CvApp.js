@@ -4,13 +4,13 @@ import { Cv, EducationalExperience, WorkExperience } from "./cv.js";
 export const CvApp = express.Router();
 
 CvApp.get("/cv", (req, res) => {
-  res.json({ Cv });
+  res.json({ experience: Cv });
 });
 
 CvApp.get("/cv/work", (req, res) => {
-  res.json({ WorkExperience });
+  res.json({ experience: WorkExperience });
 });
 
 CvApp.get("/cv/education", (req, res) => {
-  res.json({ EducationalExperience });
+  res.json({ experience: EducationalExperience });
 });
