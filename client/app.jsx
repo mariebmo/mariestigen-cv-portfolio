@@ -32,63 +32,65 @@ export function MainPage() {
   );
 }
 
-export function HandleCv(endpoint) {
-  const [cv, setCv] = useState("");
+async function fetchJSON(url){
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch(`api/cv/${endpoint}`);
-        console.log("res: " + res)
-        const data = await res.json();
-        console.log("data: " + data.Cv);
-        setCv(data);
-      } catch (err) {
-        console.log("error: " + err);
-      }
+    const res = await fetch(url)
+
+    if(!res.ok){
+        throw new Error(`Failed ${res.status}`)
     }
 
-    fetchData();
-  }, []);
-  return <ShowCv cv={cv} />;
-}
-
-export function ShowCv(cv) {
-  console.log("showCv: " + cv.Cv);
-  return cv.Cv.map((c) => CvCard(c));
+    return await res.json()
 }
 
 export function WorkPage() {
-  const [workCv, setWorkCv] = useState();
+  const [workCv, setWorkCv] = useState([]);
 
-  const res = fetch("api/cv/work");
-  console.log(res);
+  useEffect(async () => {
+      try {
+          await fetchJSON("/api/cv/work")
+              .then((json) => setWorkCv(json.WorkExperience));
+      } catch (err) {
+          console.log(err);
+      }
+    }, {})
+
 
   return (
     <div>
       <Links />
       <h1>WORK PAGE!</h1>
-      <HandleCv endpoint={"work"} />
+        {workCv.map(e => <CvCard {...e} />)}
     </div>
   );
 }
 
 export function EducationPage() {
+    const [educationCv, setEducationCv] = useState([]);
+
+    useEffect(async () => {
+        try {
+            await fetchJSON("/api/cv/education")
+                .then((json) => setEducationCv(json.EducationalExperience));
+        } catch (err) {
+            console.log(err);
+        }
+    }, {})
 
   return (
     <div>
       <Links />
-      <h1>WORK PAGE!</h1>
-      <HandleCv endpoint={"education"} />
+      <h1>EDUCATION PAGE!</h1>
+      {educationCv.map(e => <CvCard {...e} />)}
     </div>
   );
 }
 
 export function CvCard(cvObject) {
-  const { type, title, from, to } = cvObject;
+  const { id, type, title, from, to } = cvObject;
 
   return (
-    <div>
+    <div key={id}>
       <h2>{title}</h2>
       <p>{type}</p>
       <p>from: {from}</p>
