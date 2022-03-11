@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CvCard, Links, TopBar } from "./modules";
 import { fetchJSON } from "./http";
-import {current} from "./dist/index.d498c491";
 
 export function App() {
   return (
