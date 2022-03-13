@@ -1,10 +1,13 @@
 import express from "express";
-import { CvApp } from "./CvApp.js";
+import { CvRouter } from "./routers/CvRouter.js";
+import { TypeRouter} from "./routers/TypeRouter.js";
 import * as path from "path";
 
 const app = express();
 
-app.use("/api", CvApp);
+app.use("/api/cv", CvRouter);
+app.use("/api/type", TypeRouter);
+
 app.use(express.static("../client/dist"));
 app.use((req, res, next) => {
   if (req.method === "GET" && !req.path.startsWith("/api")) {
