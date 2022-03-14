@@ -28,11 +28,10 @@ function handleCv(url) {
 
   const [currentCv, setCurrentCv] = useState([]);
 
-
   useEffect(async () => {
     try {
       await fetchJSON(url).then((json) =>
-          setCurrentCv(json.experience)
+          setCurrentCv(json.experience.rows)
       );
     } catch (err) {
       console.log(err);
@@ -42,19 +41,48 @@ function handleCv(url) {
   return currentCv
 }
 
+function handleTypes(url) {
+
+  const [currentTypes, setCurrentTypes] = useState([]);
+
+  useEffect(async () => {
+    try {
+      await fetchJSON(url).then((json) =>
+          setCurrentTypes(json.type.rows)
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }, [url]);
+
+  console.log(currentTypes)
+
+  return currentTypes
+}
+
 export function CvPage() {
-  const [url, setUrl] = useState("/api/cv")
+  const [url, setUrl] = useState("/api/experience")
   const cv = handleCv(url)
+  const types = handleTypes("/api/type")
   return(
       <div>
         <TopBar title="CV"/>
-        <button onClick={() => setUrl("/api/cv")}>all</button>
-        <button onClick={() => setUrl("/api/cv/work")}>work</button>
-        <button onClick={() => setUrl("/api/cv/education")}>edu</button>
+        <button onClick={() => setUrl("/api/experience")}>all</button>
+        {types.map((t) => (
+            <TypeBtn key={t.type_id} {...t}/>
+        ))}
         {cv.map((e) => (
-            <CvCard key={e.id} {...e} />
+            <CvCard key={e.experience_id} {...e} />
         ))}
       </div>
+  )
+}
+
+export function TypeBtn(type){
+
+  const {type_id, type_name} = type;
+  return (
+      <button>{type_name}</button>
   )
 }
 
