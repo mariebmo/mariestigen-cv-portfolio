@@ -11,6 +11,7 @@ export {
 };
 
 async function getExperiences(req, res) {
+
     try {
         const result = await database.query('SELECT * FROM experience;')
         return res.status(200).json({experience: result});

@@ -1,4 +1,6 @@
 import pg from 'pg';
+import dotenv from 'dotenv'
+dotenv.config({path : 'C:\\Dev\\mariestigen-cv-portfolio\\server\\.env'}) //for dev reasons
 const {Client} = pg;
 
 const config = {
