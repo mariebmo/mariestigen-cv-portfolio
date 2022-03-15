@@ -1,7 +1,7 @@
-const {database} = require("../database.js");
+import {database} from "../database.js";
 
 
-module.exports = {
+export {
     getTypes,
     getType,
     addType,

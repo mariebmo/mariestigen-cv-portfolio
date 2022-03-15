@@ -1,6 +1,5 @@
-const {Client} = require('pg');
-const path = require("path");
-require('dotenv').config({path: path.resolve(__dirname, './.env')});
+import pg from 'pg';
+const {Client} = pg;
 
 const config = {
     connectionString: process.env.DATABASE_URL,
@@ -13,6 +12,6 @@ const database = new Client(config);
 
 database.connect();
 
-module.exports.database = database;
+export {database};
 
 

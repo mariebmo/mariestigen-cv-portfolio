@@ -18,8 +18,7 @@ export function App() {
 export function MainPage() {
   return (
     <div>
-      <Links />
-      <h1>MAIN PAGE!</h1>
+      <TopBar title={"Main"}/>
     </div>
   );
 }
