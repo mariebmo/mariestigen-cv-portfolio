@@ -5,7 +5,7 @@ import {
   getType,
   getTypes,
   updateType,
-} from "../database/models/typeController.js";
+} from "../database/controllers/typeController.js";
 
 export const TypeRouter = express.Router();
 

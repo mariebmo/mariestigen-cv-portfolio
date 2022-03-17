@@ -37,6 +37,8 @@ function handleCv(url) {
     }
   }, [url]);
 
+  console.log(url)
+
   return currentCv
 }
 
@@ -54,8 +56,6 @@ function handleTypes(url) {
     }
   }, [url]);
 
-  console.log(currentTypes)
-
   return currentTypes
 }
 
@@ -63,15 +63,25 @@ export function CvPage() {
   const [url, setUrl] = useState("/api/experience")
   const cv = handleCv(url)
   const types = handleTypes("/api/type")
+
+  const cvLayout = handleCvLayout(cv, types);
+
   return(
       <div>
         <TopBar title="CV"/>
         <button onClick={() => setUrl("/api/experience")}>all</button>
         {types.map((t) => (
-            <TypeBtn key={t.type_id} {...t}/>
+            <button key={t.type_id} onClick={() => setUrl("/api/experience/type/" + t.type_id)} {...t}>
+              {t.type_name}
+            </button>
         ))}
-        {cv.map((e) => (
-            <CvCard key={e.experience_id} {...e} />
+        {cvLayout.filter((type) => type.cvObjects.length > 0).map((type) => (
+            <div>
+              <h1>{type.type_name}</h1>
+              {type.cvObjects.map((cv) => (
+                  <CvCard key={cv.experience_id} {...cv}/>
+              ))}
+            </div>
         ))}
       </div>
   )
@@ -81,53 +91,21 @@ export function TypeBtn(type){
 
   const {type_id, type_name} = type;
   return (
-      <button>{type_name}</button>
+      <button id={type_id + "-btn"}>{type_name}</button>
   )
 }
 
-export function WorkPage() {
-  const [workCv, setWorkCv] = useState([]);
+function handleCvLayout(cv, types) {
 
-  useEffect(async () => {
-    try {
-      await fetchJSON("/api/cv/work").then((json) =>
-        setWorkCv(json.WorkExperience)
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+  const cvLayout = [];
 
-  return (
-    <div>
-        <TopBar title="Work"/>
-        {workCv.map((e) => (
-        <CvCard key={e.id} {...e} />
-      ))}
-    </div>
-  );
+  for (i = 0; i < types.length; i++) {
+    cvLayout[i] = {
+      type_id: types[i].type_id,
+      type_name: types[i].type_name,
+      cvObjects: cv.filter((c) => c.type_id === types[i].type_id),
+    };
+  }
+  
+  return cvLayout;
 }
-
-export function EducationPage() {
-  const [educationCv, setEducationCv] = useState([]);
-
-  useEffect(async () => {
-    try {
-      await fetchJSON("/api/cv/education").then((json) =>
-        setEducationCv(json.EducationalExperience)
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
-
-  return (
-    <div>
-      <TopBar title="Education"/>
-      {educationCv.map((e) => (
-        <CvCard key={e.id} {...e} />
-      ))}
-    </div>
-  );
-}
-

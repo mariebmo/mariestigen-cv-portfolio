@@ -21,8 +21,9 @@ async function getExperiences(req, res) {
 }
 
 async function getExperiencesByType(req, res) {
+
     try {
-        const result = await database.query('SELECT * FROM experience WHERE type_id = $1;', [req.query.typeId])
+        const result = await database.query('SELECT * FROM experience WHERE type_id = $1;', [req.params.typeId])
         return res.status(200).json({experience: result});
     } catch (err) {
         return res.status(500).json({message: err.message ? err.message : "something went wrong"})

@@ -20,14 +20,13 @@ export function TopBar(title) {
   );
 }
 
-export function CvCard(cvObject, type) {
-    const { experience_id, experience_title, experience_place, experience_from, experience_to } = cvObject;
-    const {type_name} = type;
+export function CvCard(cvObject) {
+    const { experience_id, experience_title, experience_place, experience_from, experience_to, experience_info } = cvObject;
 
     const experience_from_formatted = new Date(experience_from).toLocaleDateString();
     let experience_to_formatted = new Date(experience_to).toLocaleDateString();
 
-    if(experience_from_formatted > experience_to_formatted || new Date(experience_to) < new Date()){
+    if(experience_from_formatted > experience_to_formatted || new Date(experience_to) > new Date()){
         experience_to_formatted = "CURRENT"
     }
 
@@ -35,9 +34,9 @@ export function CvCard(cvObject, type) {
         <div key={experience_id} className={"card cv"}>
             <h2>{experience_title}</h2>
             <p>{experience_place}</p>
-            <p>{type_name}</p>
             <p>from: {experience_from_formatted}</p>
             <p>to: {experience_to_formatted}</p>
+            {experience_info !== "" && <p>info: {experience_info}</p>}
         </div>
     );
 }
