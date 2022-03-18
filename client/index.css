@@ -1,9 +1,20 @@
-body{
-    margin: 25px;
-    font-family: Arial;
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
     background-color: hsl(174, 10%, 80%);
 }
 
+#app{
+    background-color: hsl(174, 10%, 80%);
+}
+
+.content{
+    margin-left: 25px;
+}
+/*
 .card {
     background-color: hsl(0, 0%, 94%);
     border-radius: 10px;
@@ -13,14 +24,16 @@ body{
     padding: 25px;
     margin-bottom: 25px;
 }
+*/
+
 
 .topbar {
     background-color: hsl(198, 11%, 37%);
     width: 100%;
-    margin: -25px;
-    margin-bottom: 25px;
     padding: 25px;
 }
+
+
 
 .topbar h1 {
     color: white;
@@ -30,7 +43,7 @@ body{
     height: 100%;
     width: 100%;
     position: relative;
-    top: 15px;
+    top: 18px;
 }
 
 .link {
@@ -42,4 +55,20 @@ body{
     width: 50px;
     top: 50px;
     text-decoration: none;
+}
+
+.button-bar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 30%;
+}
+
+.filter-btn{
+    color: white;
+    background-color: hsl(198, 11%, 37%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 5px;
+    flex-grow: 1;
 }
