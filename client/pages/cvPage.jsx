@@ -85,7 +85,7 @@ function handleTypes(url) {
 function handleCvLayout(cv, types) {
   const cvLayout = [];
 
-  for (i = 0; i < types.length; i++) {
+  for (let i = 0; i < types.length; i++) {
     cvLayout[i] = {
       type_id: types[i].type_id,
       type_name: types[i].type_name,
