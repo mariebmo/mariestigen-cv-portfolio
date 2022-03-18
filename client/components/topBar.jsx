@@ -3,7 +3,7 @@ import React from "react";
 
 export function TopBarLinks() {
     return (
-        <div className={"links"}>
+        <div className={"links button-bar"}>
             <Link to="/" className={"link"}>
                 about me
             </Link>

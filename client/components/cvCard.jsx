@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 
 export function CvCard(cvObject) {
+
+  const [checked, setChecked] = new useState(false)
+
   const {
     experience_id,
     experience_title,
@@ -23,26 +26,40 @@ export function CvCard(cvObject) {
     experience_to_formatted = "CURRENT";
   }
 
+  const handleChecked = () => {
+    setChecked(!checked);
+  }
+
+  const handleCvInfo = () => {
+
+    return (
+      <div>
+        {experience_info !== null && <p>{experience_info}</p>}
+        <div className="card-actions justify-end">
+          <p className={"italic text-slate-300"}>
+            from: {experience_from_formatted}
+          </p>
+          <p className={"italic text-slate-300"}>
+            to: {experience_to_formatted}
+          </p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <div className="card bg-base-100 shadow-xl w-96">
         <div className="card-body">
           <h2 className="card-title">{experience_title}</h2>
           <p>{experience_place}</p>
-          {experience_info !== null && <p>{experience_info}</p>}
-          <div className="card-actions justify-end">
-            <p className={"italic text-slate-300"}>
-              from: {experience_from_formatted}
-            </p>
-            <p className={"italic text-slate-300"}>
-              to: {experience_to_formatted}
-            </p>
-            <div>
-              {experience_tags !== null &&
-                experience_tags.map((e) => (
-                  <span className={"badge"}>{e}</span>
-                ))}
-            </div>
+
+          <span onClick={handleChecked} className={"arrow " + (checked ? "arrow-up" : "arrow-down")}/>
+          {checked && handleCvInfo()}
+
+          <div>
+            {experience_tags !== null &&
+              experience_tags.map((e) => <span className={"badge"}>{e}</span>)}
           </div>
         </div>
       </div>

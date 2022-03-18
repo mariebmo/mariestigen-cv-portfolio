@@ -40,20 +40,18 @@ html, body{
 }
 
 .links {
-    height: 100%;
-    width: 100%;
     position: relative;
-    top: 18px;
+    top: 25px;
 }
 
 .link {
-    position: center;
-    margin-right: 50px;
-    color: white;
-    padding: 10px 10px 10px 50px;
-    background-color: hsl(199, 20%, 28%);
-    width: 50px;
-    top: 50px;
+    flex-grow: 1;
+    margin-right: 5px;
+    color: hsl(180, 5%, 12%);
+    padding: 10px 10px 10px 10px;
+    background-color: hsl(174, 10%, 80%);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     text-decoration: none;
 }
 
@@ -61,7 +59,7 @@ html, body{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 30%;
+    width: 420px;
 }
 
 .filter-btn{
@@ -71,4 +69,23 @@ html, body{
     border-bottom-right-radius: 5px;
     margin-right: 5px;
     flex-grow: 1;
+}
+
+.arrow{
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    width: 0.2rem;
+    height: 0.2rem;
+}
+
+.arrow-up{
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.arrow-down{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
