@@ -7,15 +7,15 @@ html, body {
 }
 
 .primary-color {
-    background-color: hsl(188, 49%, 91%);
+    background-color: hsl(193, 33%, 81%);
 }
 
 .secondary-color {
-    background-color: hsl(187, 47%, 55%);
+    background-color: hsl(189, 86%, 15%);
 }
 
 .tertiary-color {
-    background-color: hsl(0, 86%, 61%);
+    background-color: hsl(337, 82%, 58%);
 }
 
 .white-background {
@@ -106,6 +106,15 @@ html, body {
     padding: 10px 10px 10px 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    box-shadow: 5px -4px 15px -2px rgba(47, 1, 34, 0.54);
+}
+
+.link:hover{
+    background-color: hsl(337, 100%, 76%);
+    text-decoration: none;
+}
+
+.link:visited{
     text-decoration: none;
 }
 
