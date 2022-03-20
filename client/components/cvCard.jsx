@@ -4,7 +4,6 @@ export function CvCard(cvObject) {
   const [checked, setChecked] = new useState(false);
 
   const {
-    experience_id,
     experience_title,
     experience_place,
     experience_from,
@@ -68,7 +67,7 @@ export function CvCard(cvObject) {
           </h2>
           <p>{experience_place}</p>
 
-          <div className={"flex-container flex-container-space-around"}>
+          <div className={"flex-container flex-container-space-between"}>
             <div className="">
               <span>
                 <p className={"italic text-slate-300"}>

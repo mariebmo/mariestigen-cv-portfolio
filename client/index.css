@@ -69,8 +69,12 @@ html, body {
     flex-wrap: wrap;
 }
 
-.flex-container-space-around {
+.flex-container-space-between {
     justify-content: space-between;
+}
+
+.flex-container-space-around {
+    justify-content: space-around;
 }
 
 .tag {
@@ -138,22 +142,22 @@ html, body {
 }
 
 .arrow {
-    border: solid black;
+    border: solid darkgray;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
     width: 0.2rem;
     height: 0.2rem;
+    position: relative;
+    bottom: -25px;
 }
 
 .arrow-up {
     transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
 }
 
 .arrow-down {
     transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
 }
 
 .right {
@@ -169,4 +173,13 @@ html, body {
 .container{
     width: 100%;
     height: 100%;
+}
+
+.image-size{
+    width: 300px;
+}
+
+.image-link{
+    width: 25px;
+    margin-right: 10px;
 }
