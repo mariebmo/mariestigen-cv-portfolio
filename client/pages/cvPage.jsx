@@ -13,17 +13,17 @@ export function CvPage() {
   return (
     <div>
       <TopBar title="CV" />
-      <div className={"content"}>
+      <div id={"cv-container"} className={"content"}>
         <div className={"button-bar"}>
           <button
-            className={"filter-btn secondary-color"}
+            className={"filter-btn secondary-color secondary-text-color drop-shadow"}
             onClick={() => setUrl("/api/experience")}
           >
             all
           </button>
           {types.map((t) => (
             <button
-              className={"filter-btn secondary-color"}
+              className={"filter-btn secondary-color secondary-text-color drop-shadow"}
               key={t.type_id}
               onClick={() => setUrl("/api/experience/type/" + t.type_id)}
               {...t}
@@ -36,7 +36,15 @@ export function CvPage() {
           .filter((type) => type.cvObjects.length > 0)
           .map((type) => (
             <div>
-              <h2 className={"text-2xl font-bold"}>{type.type_name}</h2>
+              <br />
+
+              <div className={"container white-background drop-shadow"}>
+                <h2 className={"centered text-2xl font-bold"}>
+                  {type.type_name.toUpperCase()}
+                </h2>
+              </div>
+
+              <br />
               {type.cvObjects.map((cv) => (
                 <CvCard key={cv.experience_id} {...cv} />
               ))}
@@ -89,13 +97,15 @@ function handleCvLayout(cv, types) {
     cvLayout[i] = {
       type_id: types[i].type_id,
       type_name: types[i].type_name,
-      cvObjects: cv.filter((c) => c.type_id === types[i].type_id).sort(sortyByDate),
+      cvObjects: cv
+        .filter((c) => c.type_id === types[i].type_id)
+        .sort(sortyByDate),
     };
   }
 
   return cvLayout;
 }
 
-function sortyByDate(a, b){
+function sortyByDate(a, b) {
   return new Date(b.experience_from) - new Date(a.experience_from);
 }

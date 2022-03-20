@@ -19,10 +19,10 @@ export function CvCard(cvObject) {
   let experience_to_formatted = new Date(experience_to).toLocaleDateString();
 
   if (
-    new Date(experience_to) < new Date("1996-06-10")||
+    new Date(experience_to) < new Date("1996-06-10") ||
     new Date(experience_to) > new Date()
   ) {
-    experience_to_formatted = "CURRENT";
+    experience_to_formatted = "currently working here";
   }
 
   const handleChecked = () => {
@@ -32,14 +32,20 @@ export function CvCard(cvObject) {
   const handleCvInfo = () => {
     return (
       <div>
-        {experience_info !== null && <p>{experience_info}</p>}
-        <div className="card-actions justify-end">
-          <p className={"italic text-slate-300"}>
-            from: {experience_from_formatted}
-          </p>
-          <p className={"italic text-slate-300"}>
-            to: {experience_to_formatted}
-          </p>
+        {experience_info !== null && (
+          <div>
+            <p className={"tertiary-text-color"}>{experience_info}</p>
+            <br />
+          </div>
+        )}
+
+        <div className={"flex-container"}>
+          {experience_tags !== null &&
+            experience_tags.map((e) => (
+              <span className={"tag tertiary-border-color tertiary-text-color"}>
+                {e}
+              </span>
+            ))}
         </div>
       </div>
     );
@@ -47,26 +53,44 @@ export function CvCard(cvObject) {
 
   return (
     <div>
-      <div className="card bg-base-100 shadow-xl w-96">
+      <div className="card card-compact bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">{experience_title} <span className={"circle " + (experience_to_formatted === "CURRENT" ? "circle-active" : "")}/></h2>
-          <p>{experience_place}</p>
-
-          {checked && handleCvInfo()}
-
-          <div>
-            {experience_tags !== null &&
-              experience_tags.map((e) => <span className={"badge secondary-color badge-outline"}>{e}</span>)}
-          </div>
-
-          <div className={"justify-end centered"}>
+          <h2 className="card-title">
+            {experience_title}{" "}
             <span
-              onClick={handleChecked}
               className={
-                "arrow " + (checked ? "arrow-up" : "arrow-down")
+                "right circle " +
+                (experience_to_formatted === "currently working here"
+                  ? "circle-active"
+                  : "")
               }
             />
+          </h2>
+          <p>{experience_place}</p>
+
+          <div className={"flex-container flex-container-space-around"}>
+            <div className="">
+              <span>
+                <p className={"italic text-slate-300"}>
+                  from: {experience_from_formatted}
+                </p>
+              </span>
+
+              <span>
+                <p className={"italic text-slate-300"}>
+                  to: {experience_to_formatted}
+                </p>
+              </span>
+            </div>
+
+            <div className={""}>
+              <span
+                onClick={handleChecked}
+                className={"arrow " + (checked ? "arrow-up" : "arrow-down")}
+              />
+            </div>
           </div>
+          {checked && handleCvInfo()}
         </div>
       </div>
       <br />
