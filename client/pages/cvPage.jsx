@@ -71,8 +71,6 @@ function handleCv(url) {
     }
   }, [url]);
 
-  console.log(url);
-
   return currentCv;
 }
 

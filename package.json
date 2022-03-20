@@ -15,7 +15,6 @@
     "build": "npm run build:server && npm run build:client && npm run build:database",
     "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
-    "build:database": "cd server/database && npm run build",
     "start": "cd server && npm start"
   },
   "repository": {
