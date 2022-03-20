@@ -16,14 +16,14 @@ export function CvPage() {
       <div className={"content"}>
         <div className={"button-bar"}>
           <button
-            className={"filter-btn"}
+            className={"filter-btn secondary-color"}
             onClick={() => setUrl("/api/experience")}
           >
             all
           </button>
           {types.map((t) => (
             <button
-              className={"filter-btn"}
+              className={"filter-btn secondary-color"}
               key={t.type_id}
               onClick={() => setUrl("/api/experience/type/" + t.type_id)}
               {...t}
@@ -89,9 +89,13 @@ function handleCvLayout(cv, types) {
     cvLayout[i] = {
       type_id: types[i].type_id,
       type_name: types[i].type_name,
-      cvObjects: cv.filter((c) => c.type_id === types[i].type_id),
+      cvObjects: cv.filter((c) => c.type_id === types[i].type_id).sort(sortyByDate),
     };
   }
 
   return cvLayout;
+}
+
+function sortyByDate(a, b){
+  return new Date(b.experience_from) - new Date(a.experience_from);
 }

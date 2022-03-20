@@ -4,13 +4,13 @@ import React from "react";
 export function TopBarLinks() {
     return (
         <div className={"links button-bar"}>
-            <Link to="/" className={"link"}>
+            <Link to="/" className={"link main-color"}>
                 about me
             </Link>
-            <Link to="/cv" className={"link"}>
+            <Link to="/cv" className={"link main-color"}>
                 cv
             </Link>
-            <Link to="/contact" className={"link"}>
+            <Link to="/contact" className={"link main-color"}>
                 contact
             </Link>
         </div>
@@ -19,7 +19,7 @@ export function TopBarLinks() {
 
 export function TopBar(title) {
     return (
-        <div className={"topbar"}>
+        <div className={"topbar secondary-color"}>
             <div className={"topbar-content"}>
                 <h1 className={"text-2xl"}>{title.title}</h1>
                 <TopBarLinks/>

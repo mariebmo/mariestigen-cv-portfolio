@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 export function CvCard(cvObject) {
-
-  const [checked, setChecked] = new useState(false)
+  const [checked, setChecked] = new useState(false);
 
   const {
     experience_id,
@@ -20,7 +19,7 @@ export function CvCard(cvObject) {
   let experience_to_formatted = new Date(experience_to).toLocaleDateString();
 
   if (
-    experience_from_formatted > experience_to_formatted ||
+    new Date(experience_to) < new Date("1996-06-10")||
     new Date(experience_to) > new Date()
   ) {
     experience_to_formatted = "CURRENT";
@@ -28,10 +27,9 @@ export function CvCard(cvObject) {
 
   const handleChecked = () => {
     setChecked(!checked);
-  }
+  };
 
   const handleCvInfo = () => {
-
     return (
       <div>
         {experience_info !== null && <p>{experience_info}</p>}
@@ -51,15 +49,23 @@ export function CvCard(cvObject) {
     <div>
       <div className="card bg-base-100 shadow-xl w-96">
         <div className="card-body">
-          <h2 className="card-title">{experience_title}</h2>
+          <h2 className="card-title">{experience_title} <span className={"circle " + (experience_to_formatted === "CURRENT" ? "circle-active" : "")}/></h2>
           <p>{experience_place}</p>
 
-          <span onClick={handleChecked} className={"arrow " + (checked ? "arrow-up" : "arrow-down")}/>
           {checked && handleCvInfo()}
 
           <div>
             {experience_tags !== null &&
-              experience_tags.map((e) => <span className={"badge"}>{e}</span>)}
+              experience_tags.map((e) => <span className={"badge secondary-color badge-outline"}>{e}</span>)}
+          </div>
+
+          <div className={"justify-end centered"}>
+            <span
+              onClick={handleChecked}
+              className={
+                "arrow " + (checked ? "arrow-up" : "arrow-down")
+              }
+            />
           </div>
         </div>
       </div>

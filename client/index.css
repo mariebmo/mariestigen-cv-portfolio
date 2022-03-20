@@ -4,13 +4,20 @@ html, body{
     height: 100%;
     width: 100%;
     font-family: Arial, sans-serif;
-    background-color: hsl(174, 10%, 80%);
 }
 
-#app{
-    background-color: hsl(174, 10%, 80%);
+.main-color{
+    background-color: hsl(37, 32%, 90%);
 }
 
+.secondary-color{
+    background-color: hsl(32, 84%, 39%);
+}
+
+.tertiary-color{
+    background-color: hsl(197, 68%, 46%);
+
+}
 .content{
     margin-left: 25px;
 }
@@ -28,7 +35,6 @@ html, body{
 
 
 .topbar {
-    background-color: hsl(198, 11%, 37%);
     width: 100%;
     padding: 25px;
 }
@@ -49,7 +55,6 @@ html, body{
     margin-right: 5px;
     color: hsl(180, 5%, 12%);
     padding: 10px 10px 10px 10px;
-    background-color: hsl(174, 10%, 80%);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     text-decoration: none;
@@ -64,11 +69,29 @@ html, body{
 
 .filter-btn{
     color: white;
-    background-color: hsl(198, 11%, 37%);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     margin-right: 5px;
     flex-grow: 1;
+}
+
+.centered{
+    position: relative;
+    bottom: -20px;
+    margin: auto;
+    padding-right: 20px;
+}
+
+.circle{
+    border: solid grey;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 100%;
+}
+
+.circle-active{
+    border: solid hsl(143, 65%, 39%);
+    background-color: hsl(143, 65%, 39%);
 }
 
 .arrow{
