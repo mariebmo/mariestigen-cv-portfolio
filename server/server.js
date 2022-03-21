@@ -1,16 +1,15 @@
 import dotenv from "dotenv";
+
 dotenv.config();
 import express from "express";
 import bodyParser from "body-parser";
-import { CvRouter } from "./routers/CvRouter.js";
-import { TypeRouter} from "./routers/TypeRouter.js";
+import { TypeRouter } from "./routers/TypeRouter.js";
 import { ExperienceRouter } from "./routers/ExperienceRouter.js";
 import * as path from "path";
 
 const app = express();
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.use("/api/cv", CvRouter);
 app.use("/api/type", TypeRouter);
 app.use("/api/experience", ExperienceRouter);
 

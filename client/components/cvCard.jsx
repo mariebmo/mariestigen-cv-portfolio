@@ -21,7 +21,7 @@ export function CvCard(cvObject) {
     new Date(experience_to) < new Date("1996-06-10") ||
     new Date(experience_to) > new Date()
   ) {
-    experience_to_formatted = "currently working here";
+    experience_to_formatted = "current";
   }
 
   const handleChecked = () => {
@@ -38,6 +38,22 @@ export function CvCard(cvObject) {
           </div>
         )}
 
+        <div className="">
+          <span>
+            <p className={"italic text-slate-300"}>
+              from: {experience_from_formatted}
+            </p>
+          </span>
+
+          <span>
+            <p className={"italic text-slate-300"}>
+              to: {experience_to_formatted}
+            </p>
+          </span>
+        </div>
+
+        <br />
+
         <div className={"flex-container"}>
           {experience_tags !== null &&
             experience_tags.map((e) => (
@@ -52,36 +68,22 @@ export function CvCard(cvObject) {
 
   return (
     <div>
-      <div className="card card-compact bg-base-100 shadow-xl">
+      <div className="card card-size card-compact bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">
             {experience_title}{" "}
             <span
               className={
                 "right circle " +
-                (experience_to_formatted === "currently working here"
-                  ? "circle-active"
-                  : "")
+                (experience_to_formatted === "current" ? "circle-active" : "")
               }
             />
           </h2>
-          <p>{experience_place}</p>
 
           <div className={"flex-container flex-container-space-between"}>
-            <div className="">
-              <span>
-                <p className={"italic text-slate-300"}>
-                  from: {experience_from_formatted}
-                </p>
-              </span>
-
-              <span>
-                <p className={"italic text-slate-300"}>
-                  to: {experience_to_formatted}
-                </p>
-              </span>
-            </div>
-
+            <span>
+              <p>{experience_place}</p>
+            </span>
             <div className={""}>
               <span
                 onClick={handleChecked}

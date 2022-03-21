@@ -6,55 +6,76 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
-.primary-color {
+.primary-background {
     background-color: hsl(193, 33%, 81%);
 }
 
-.secondary-color {
+.secondary-background {
     background-color: hsl(189, 86%, 15%);
 }
 
-.tertiary-color {
+.secondary-background-ghost {
+    background-color: hsla(189, 87%, 15%, 0.25);
+}
+
+.tertiary-background {
     background-color: hsl(337, 82%, 58%);
+}
+
+.grey-background {
+    background-color: grey;
 }
 
 .white-background {
     background-color: white;
 }
 
+
 .primary-text-color {
-    color: hsl(100, 0%, 0%);
+    color: hsl(193, 33%, 81%);
 }
 
 .secondary-text-color {
-    color: hsl(100, 100%, 100%);
+    color: hsl(189, 86%, 15%);
 }
 
 .tertiary-text-color {
-    color: hsl(0, 0%, 53%);
+    color: hsl(337, 82%, 58%);
 }
 
-.black-text{
+.black-text {
     color: black;
 }
 
-.white-text{
+.white-text {
     color: white;
 }
 
+.grey-text {
+    color: grey;
+}
+
 .primary-border-color {
-    border: solid hsl(100, 0%, 0%);
+    border: solid hsl(193, 33%, 81%);
 }
 
 .secondary-border-color {
-    border: solid hsl(100, 100%, 100%);
+    border: solid hsl(189, 86%, 15%);
 }
 
 .tertiary-border-color {
-    border: solid hsl(0, 0%, 53%);
+    border: solid hsl(337, 82%, 58%);
 }
 
-.drop-shadow{
+.grey-border-color {
+    border: solid grey;
+}
+
+.white-border-color {
+    border: solid white;
+}
+
+.drop-shadow {
     -webkit-box-shadow: 5px 4px 15px -1px rgba(10, 34, 37, 0.15);
     box-shadow: 5px 4px 15px -1px rgba(12, 42, 45, 0.15);
 }
@@ -69,12 +90,23 @@ html, body {
     flex-wrap: wrap;
 }
 
+.flex-column {
+    flex-direction: column;
+}
+
 .flex-container-space-between {
     justify-content: space-between;
 }
 
 .flex-container-space-around {
     justify-content: space-around;
+}
+
+.flex-right {
+    justify-content: flex-end;
+}
+
+.cards-container {
 }
 
 .tag {
@@ -86,8 +118,20 @@ html, body {
 }
 
 .content {
-    margin-left: 25px;
-    margin-right: 25px;
+    margin: auto;
+    padding: 25px;
+}
+
+.app-width {
+    min-width: 420px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.card-size {
+    min-width: 210px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .topbar {
@@ -98,6 +142,8 @@ html, body {
 .links {
     position: relative;
     top: 25px;
+    margin: auto;
+
 }
 
 .link {
@@ -109,27 +155,30 @@ html, body {
     box-shadow: 5px -4px 15px -2px rgba(47, 1, 34, 0.54);
 }
 
-.link:hover{
+.link:hover {
     background-color: hsl(337, 100%, 76%);
     text-decoration: none;
 }
 
-.link:visited{
+.link:visited {
     text-decoration: none;
 }
 
 .button-bar {
+    padding-top: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 420px;
 }
 
 .filter-btn {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
     margin-right: 5px;
     flex-grow: 1;
+}
+
+.filter-btn:hover {
+    background-color: hsla(189, 87%, 15%, 50%);
 }
 
 .centered {
@@ -139,9 +188,9 @@ html, body {
 }
 
 .circle {
-    border: solid lightgray;
     display: inline-block;
-    padding: 4px;
+    padding: 0.4rem;
+    border: 0.1rem solid lightgray;
     border-radius: 100%;
 }
 
@@ -158,7 +207,7 @@ html, body {
     width: 0.2rem;
     height: 0.2rem;
     position: relative;
-    bottom: -25px;
+    right: 3px;
 }
 
 .arrow-up {
@@ -174,21 +223,18 @@ html, body {
     right: 15px;
 }
 
-#cv-container {
-    min-width: 300px;
-    max-width: 420px;
-}
-
-.container{
-    width: 100%;
+.container {
     height: 100%;
+    min-width: 300px;
+    width: 100%;
+    max-width: 1000px;
 }
 
-.image-size{
+.image-size {
     width: 300px;
 }
 
-.image-link{
+.image-link {
     width: 25px;
     margin-right: 10px;
 }

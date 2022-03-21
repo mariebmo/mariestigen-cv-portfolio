@@ -10,22 +10,39 @@ export function CvPage() {
 
   const cvLayout = handleCvLayout(cv, types);
 
+  const [activeFilter, setActiveFilter] = useState("filter-all");
+
   return (
     <div>
       <TopBar title="CV" />
-      <div id={"cv-container"} className={"content"}>
+      <div id={"cv-container"} className={"content app-width"}>
         <div className={"button-bar"}>
           <button
-            className={"filter-btn secondary-color secondary-text-color drop-shadow"}
-            onClick={() => setUrl("/api/experience")}
+            id={"filter-all"}
+            className={
+              activeFilter === "filter-all"
+                ? "filter-btn secondary-background white-text"
+                : "filter-btn secondary-background-ghost white-text"
+            }
+            onClick={() => {
+              setUrl("/api/experience");
+              setActiveFilter("filter-all");
+            }}
           >
             all
           </button>
           {types.map((t) => (
             <button
-              className={"filter-btn secondary-color secondary-text-color drop-shadow"}
+              className={
+                activeFilter === "filter-" + t.type_name
+                  ? "filter-btn secondary-background white-text"
+                  : "filter-btn secondary-background-ghost white-text"
+              }
               key={t.type_id}
-              onClick={() => setUrl("/api/experience/type/" + t.type_id)}
+              onClick={() => {
+                setUrl("/api/experience/type/" + t.type_id);
+                setActiveFilter("filter-" + t.type_name);
+              }}
               {...t}
             >
               {t.type_name}
@@ -38,16 +55,18 @@ export function CvPage() {
             <div>
               <br />
 
-              <div className={"container white-background drop-shadow"}>
-                <h2 className={"centered text-2xl font-bold"}>
+              <div className={""}>
+                <h2 className={"centered text-2xl black-text font-bold"}>
                   {type.type_name.toUpperCase()}
                 </h2>
               </div>
 
               <br />
-              {type.cvObjects.map((cv) => (
-                <CvCard key={cv.experience_id} {...cv} />
-              ))}
+              <div className={"flex-container flex-column cards-container"}>
+                {type.cvObjects.map((cv) => (
+                  <CvCard key={cv.experience_id} {...cv} />
+                ))}
+              </div>
             </div>
           ))}
       </div>
@@ -70,6 +89,8 @@ function handleCv(url) {
       console.log(err);
     }
   }, [url]);
+
+  console.log(url);
 
   return currentCv;
 }
