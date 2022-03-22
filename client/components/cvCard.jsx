@@ -33,7 +33,7 @@ export function CvCard(cvObject) {
       <div>
         {experience_info !== null && (
           <div>
-            <p className={"tertiary-text-color"}>{experience_info}</p>
+            <p className={"grey-text"}>{experience_info}</p>
             <br />
           </div>
         )}

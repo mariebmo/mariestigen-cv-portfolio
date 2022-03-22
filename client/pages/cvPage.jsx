@@ -106,7 +106,7 @@ function handleTypes(url) {
     }
   }, [url]);
 
-  return currentTypes;
+  return currentTypes.sort(function (a, b){return a.type_id - b.type_id});
 }
 
 function handleCvLayout(cv, types) {
